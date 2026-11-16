@@ -1,0 +1,214 @@
+@import "tailwindcss";
+
+/* ————————————————————————————————————————————————————————————
+   Design system Okkema Workum — "technische tekening"
+   Lichte tekenvlakken met rasters, maatlijnen en annotaties;
+   oranje uit het logo als gedoseerd accent.
+   ———————————————————————————————————————————————————————————— */
+
+@theme {
+  /* Merkkleuren (uit het logo) */
+  --color-orange: #f39200; /* CTA's en accenten; altijd met donkere tekst (8:1). Wit op oranje haalt geen AA. */
+  --color-orange-deep: #d98200;
+  --color-anthracite: #3c3c3b;
+  /* UI-kleuren */
+  --color-paper: #f5f5f3; /* surface-light */
+  --color-white: #ffffff;
+  --color-stone: #ebebe8;
+  --color-ink: #252525; /* dark */
+  --color-ink-soft: #2f2f2e;
+  --color-muted: #686866; /* ≥ 4.5:1 op paper (#777775 uit de briefing haalt dat niet) */
+  --color-line: rgb(37 37 37 / 0.16);
+  --color-line-strong: rgb(37 37 37 / 0.32);
+  --color-line-dark: rgb(245 245 243 / 0.18);
+  --color-grid: rgb(37 37 37 / 0.045);
+  --color-ph: #d6d6d2;
+  --color-ph-dark: #333332;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@theme inline {
+  /* Koppen en labels: Barlow Condensed 600/700. Tekst en UI: Inter. */
+  --font-display: var(--font-barlow), "Arial Narrow", ui-sans-serif, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    hyphens: manual;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  ::selection {
+    background: var(--color-orange);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+
+  .on-dark :focus-visible {
+    outline-color: var(--color-orange);
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 1600px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4.2vw, 4rem);
+  }
+
+  /* ——— Typografie ——— */
+  /* Klein rubrieklabel (Inter, kapitalen). */
+  .label {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.75rem;
+    line-height: 1.3;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* Koppen: Barlow Condensed in gewone schrijfwijze, rustig en compact. */
+  .display-xl {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(3rem, 6.6vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+  }
+
+  .display-lg {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(2.5rem, 4.6vw, 4.75rem);
+    line-height: 0.98;
+    letter-spacing: -0.005em;
+  }
+
+  .display-md {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.875rem, 2.8vw, 3rem);
+    line-height: 1.05;
+  }
+
+  .display-sm {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.5rem, 1.9vw, 2rem);
+    line-height: 1.1;
+  }
+
+  .lead {
+    font-size: clamp(1.0625rem, 1.2vw, 1.25rem);
+    line-height: 1.6;
+  }
+
+  .num {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-feature-settings: "tnum";
+  }
+
+  .prose-body p + p {
+    margin-top: 1em;
+  }
+
+  .link-line {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 100% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 2px;
+    transition: background-size 0.4s var(--ease-out-quart);
+  }
+  .link-line:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+
+  /* Maatlijnen tekenen zichzelf uit wanneer ze in beeld komen. */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .fade-up {
+        animation: fade-up linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 40%;
+      }
+    }
+  }
+}
+
+/* Hero-foto komt rustig binnen. */
+@media (prefers-reduced-motion: no-preference) {
+  .settle {
+    animation: settle 2.4s var(--ease-out-quart) both;
+  }
+}
+
+@keyframes settle {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
