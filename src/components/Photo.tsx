@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getImage } from "@/data/imageRequirements";
 import { PhotoPlaceholder, type PlaceholderVariant } from "./PhotoPlaceholder";
+import { asset } from "@/lib/asset";
 
 type Props = {
   /** Id uit src/data/imageRequirements.ts */
@@ -30,7 +31,7 @@ export function Photo({ id, variant, className = "", sizes = "100vw", priority, 
         style={{ aspectRatio: (aspectRatio ?? image.aspectRatio).replace("/", " / ") }}
       >
         <Image
-          src={image.src}
+          src={asset(image.src)}
           alt={image.alt}
           fill
           sizes={sizes}

@@ -7,6 +7,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { company } from "@/data/company";
 import { mainNav, primaryCta } from "@/data/navigation";
 import { ArrowRight } from "./Icons";
+import { asset } from "@/lib/asset";
 
 /** Rustige, vaste header: logo, navigatie en één duidelijke offerteknop. */
 export function SiteHeader() {
@@ -79,7 +80,7 @@ export function SiteHeader() {
       </a>
       <div className="wrap flex h-[4.5rem] items-center justify-between gap-8 lg:h-24">
         <Link href="/" className="shrink-0" aria-label={`${company.name}, naar de homepage`}>
-          <Image src="/images/okkema-logo.png" alt="" width={1997} height={498} priority sizes="(min-width: 1024px) 210px, 168px" className="h-[42px] w-auto lg:h-[52px]" />
+          <Image src={asset("/images/okkema-logo.png")} alt="" width={1997} height={498} priority sizes="(min-width: 1024px) 210px, 168px" className="h-[42px] w-auto lg:h-[52px]" />
         </Link>
 
         <nav aria-label="Hoofdmenu" className="hidden xl:block">

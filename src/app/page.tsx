@@ -11,6 +11,7 @@ import { getImpression, impressionSlot, type Impression } from "@/data/impressio
 import { services, servicePath } from "@/data/services";
 import { werkwijzeSteps } from "@/data/werkwijze";
 import { pageMetadata, serviceJsonLd } from "@/lib/seo";
+import { asset } from "@/lib/asset";
 
 export const metadata = pageMetadata({
   title: "Okkema Workum | Betonwerken, betonvloeren en bouwmaatvoering",
@@ -69,7 +70,7 @@ export default function HomePage() {
         <div className="wrap">
           <div className="relative aspect-[4/5] overflow-hidden rounded-[4px] bg-ph sm:aspect-[16/9] lg:aspect-[21/9]">
             <Image
-              src="/images/foto/img-3280.jpg"
+              src={asset("/images/foto/img-3280.jpg")}
               alt="Gestorte betonnen keerwanden en vloer onder een blauwe lucht met stapelwolken"
               fill
               priority

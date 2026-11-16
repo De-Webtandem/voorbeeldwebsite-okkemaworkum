@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { categoryLabels, impressionSlot, type Impression } from "@/data/impressions";
 import { ArrowRight } from "./Icons";
 import { Photo } from "./Photo";
+import { asset } from "@/lib/asset";
 
 /**
  * Fotogrid met lightbox (native <dialog>: focus-trap, Escape en
@@ -130,7 +131,7 @@ export function ImpressionGallery({ items }: { items: Impression[] }) {
             <div className="relative min-h-0 flex-1" onClick={(e) => e.target === e.currentTarget && close()}>
               <Image
                 key={item.file}
-                src={`/images/foto/${item.file}.jpg`}
+                src={asset(`/images/foto/${item.file}.jpg`)}
                 alt={item.alt}
                 fill
                 sizes="100vw"

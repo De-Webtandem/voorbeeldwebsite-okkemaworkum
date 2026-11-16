@@ -3,6 +3,7 @@ import Link from "next/link";
 import { company } from "@/data/company";
 import { mainNav } from "@/data/navigation";
 import { FacebookIcon } from "./Icons";
+import { asset } from "@/lib/asset";
 
 export function SiteFooter() {
   return (
@@ -10,7 +11,7 @@ export function SiteFooter() {
       <div className="wrap grid gap-12 py-16 md:grid-cols-2 md:py-24 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <Link href="/" aria-label={`${company.name}, naar de homepage`} className="inline-block">
-            <Image src="/images/okkema-logo-white.png" alt={company.legalName} width={1997} height={498} sizes="230px" className="h-auto w-[210px] md:w-[230px]" />
+            <Image src={asset("/images/okkema-logo-white.png")} alt={company.legalName} width={1997} height={498} sizes="230px" className="h-auto w-[210px] md:w-[230px]" />
           </Link>
           <p className="mt-8 max-w-sm text-paper/65">
             Betonwerken, betonvloeren en bouwmaatvoering. Persoonlijk advies, korte lijnen en één aanspreekpunt.

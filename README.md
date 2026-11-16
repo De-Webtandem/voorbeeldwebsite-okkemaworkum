@@ -16,6 +16,12 @@ npm run build && npm run start   # productiebuild
 
 Controles: `npm run lint` (ESLint) en `npm run build` (inclusief TypeScript).
 
+## Demo-link (GitHub Pages)
+
+De demo staat op **https://de-webtandem.github.io/voorbeeldwebsite-okkemaworkum/** en wordt bij elke push naar `main` automatisch opnieuw gepubliceerd (`.github/workflows/pages.yml`).
+
+Die build (`scripts/build-pages.sh`) maakt een statische export in een submap: zonder server, dus zonder redirects, beeldoptimalisatie en Cache Components, en altijd noindex. Paden naar bestanden in `/public` gaan daarom via `asset()` uit `src/lib/asset.ts`. Draai het script alleen in een schone checkout: het verwijdert `robots.ts` en `sitemap.ts`.
+
 ## Omgevingsvariabelen (allemaal optioneel)
 
 | Variabele | Standaard | Doel |
